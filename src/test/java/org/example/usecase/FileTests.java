@@ -49,6 +49,7 @@ public class FileTests {
 
             Actions actions = new Actions(webDriver);
             actions.contextClick(folder).perform();
+            actions.contextClick(folder).perform();
             Utils.waitUntilPageLoads(webDriver, 10);
             Utils.getElementBySelector(webDriver, By.xpath(".//ul[@id='folderMenu']/li[3]/a")).click();
             Utils.waitUntilPageLoads(webDriver, 10);
