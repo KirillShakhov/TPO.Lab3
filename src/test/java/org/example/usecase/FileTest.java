@@ -5,10 +5,7 @@ import org.example.model.Header;
 import org.example.model.MainPage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
@@ -31,13 +28,18 @@ public class FileTest {
             webDriver.manage().window().setSize(new Dimension(1440, 875));
             mainPage.doLogin();
             header.goToFiles();
-            Utils.getElementBySelector(webDriver, By.xpath(".//*[@id=\"df_share\"]/div[1]/div[1]/a[1]/span")).click();
+//            Utils.getElementBySelector(webDriver, By.xpath(".//*[@id=\"df_share\"]/div[1]/div[1]/a[1]/span")).click();
+
+            WebElement create_f = Utils.getElementBySelector(webDriver, By.xpath(".//*[@id=\"df_share\"]/div[1]/div[1]/a[1]/span"));
+            JavascriptExecutor executor = (JavascriptExecutor) webDriver;
+            executor.executeScript("arguments[0].click();", create_f);
 
             WebElement nameField = Utils.getElementBySelector(webDriver, By.xpath(".//*[@id=\"depositbox\"]/div[1]/div[2]/div/input"));
             nameField.clear();
             nameField.sendKeys("test_folder");
 
-            Utils.getElementBySelector(webDriver, By.xpath(".//*[@id=\"depositbox\"]/div[1]/div[2]/div/div")).click();
+            WebElement ok = Utils.getElementBySelector(webDriver, By.xpath(".//*[@id=\"depositbox\"]/div[1]/div[2]/div/div"));
+            executor.executeScript("arguments[0].click();", ok);
 
             WebElement folder = Utils.getElementBySelector(webDriver, By.xpath(".//*[@id=\"df_share\"]/div[1]/ul/li[2]/ul/li[1]/a"));
             assertEquals("test_folder 0", folder.getText());
@@ -49,9 +51,6 @@ public class FileTest {
             Utils.waitUntilPageLoads(webDriver, 10);
             Utils.getElementBySelector(webDriver, By.xpath(".//div[@id='depositbox']/div/div[2]/div/label[2]/input")).click();
             Utils.getElementBySelector(webDriver, By.xpath(".//div[@id='depositbox']/div/div[2]/div/div")).click();
-
-            folder = Utils.getElementBySelector(webDriver, By.xpath(".//*[@id=\"df_share\"]/div[1]/ul/li[2]/ul/li[1]/a"));
-            assertEquals("", folder.getText());
 
             webDriver.quit();
         });
