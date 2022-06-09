@@ -23,9 +23,7 @@ public class Utils {
     public static final String CHROME_SYSTEM_PROPERTY_PATH = "drivers/chromedriver";
     public static final String FIREFOX_SYSTEM_PROPERTY_NAME = "webdriver.gecko.driver";
     public static final String FIREFOX_SYSTEM_PROPERTY_PATH = "drivers/geckodriver";
-
     public static final String SAFARI_SYSTEM_PROPERTY_NAME = "webdriver.safari.driver";
-
     public static final String SAFARI_SYSTEM_PROPERTY_PATH = "/usr/bin/safaridriver";
 
 
