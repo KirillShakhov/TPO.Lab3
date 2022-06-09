@@ -15,7 +15,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AccountEditTest {
+public class AccountEditTests {
 
     @BeforeAll
     public static void prepareDrivers() {
@@ -56,13 +56,13 @@ public class AccountEditTest {
 
     private void checkField(AccountPage.Fields f, String value1, String value2) {
         List<WebDriver> drivers = Utils.getDrivers();
-        drivers.parallelStream().forEach(webDriver -> {
-            Header header = new Header(webDriver);
+        drivers.forEach(webDriver -> {
             MainPage mainPage = new MainPage(webDriver);
             AccountPage accountPage = new AccountPage(webDriver);
             webDriver.get(Utils.BASE_URL);
             webDriver.manage().window().setSize(new Dimension(1440, 875));
             mainPage.doLogin();
+            Header header = new Header(webDriver);
             header.goToAccount();
             //
             accountPage.changeField(f, value1);

@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AuthTest {
+public class AuthTests {
 
     @BeforeAll
     public static void prepareDrivers() {
@@ -20,6 +20,7 @@ public class AuthTest {
     }
 
     @Test
+    @Order(1)
     void loginTest() {
         List<WebDriver> drivers = Utils.getDrivers();
         drivers.forEach(webDriver -> {
@@ -35,6 +36,7 @@ public class AuthTest {
     }
 
     @Test
+    @Order(2)
     void logoutTest() {
         List<WebDriver> drivers = Utils.getDrivers();
         drivers.parallelStream().forEach(webDriver -> {
@@ -51,6 +53,7 @@ public class AuthTest {
     }
 
     @Test
+    @Order(3)
     void wrongLoginTest() {
         List<WebDriver> drivers = Utils.getDrivers();
         drivers.parallelStream().forEach(webDriver -> {
